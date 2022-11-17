@@ -5,7 +5,7 @@ body
     background: linear-gradient(to right, #2c3e50, #67b0e1);
 }
 
-.contenedor-calculadora
+.container-calculator
 {
     display: grid;
     justify-content: center;
@@ -15,7 +15,7 @@ body
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
-.contenedor-calculadora button
+.container-calculator button
 {
     cursor: pointer;
     font-size: 2rem;
@@ -29,7 +29,7 @@ body
     color: rgba(177, 114, 37, 0.8);
 }
 
-.resultado
+.result
 {
     color: rgb(91,152, 66);
 }
@@ -53,7 +53,7 @@ body
     text-align: right;
 }
 
-.contenedor-calculadora > button:hover
+.container-calculator > button:hover
 {
     background-color: burlywood;
 }

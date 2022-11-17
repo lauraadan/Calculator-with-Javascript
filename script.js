@@ -1,88 +1,88 @@
-const botonNumeros = document.getElementsByName('data-number');
-const botonOpera = document.getElementsByName('data-opera');
-const botonDelete = document.getElementsByName('data-delete')[0];
-const botonIgual = document.getElementsByName('data-igual')[0];
+const buttonNumbers = document.getElementsByName('data-number');
+const buttonOperation = document.getElementsByName('data-opera');
+const buttonDelete = document.getElementsByName('data-delete')[0];
+const buttonSame = document.getElementsByName('data-igual')[0];
 
-var resultado = document.getElementById('resultado');
-var opeActual = '';
-var opeAnterior = '';
-var operacion = undefined;
+var result = document.getElementById('result');
+var actualOperation = '';
+var previousOperation = '';
+var operation = undefined;
 
-botonNumeros.forEach(function(boton){
-    boton.addEventListener('click', function(){
-        agregarNumero(boton.innerText);
+buttonNumbers.forEach(function(button){
+    button.addEventListener('click', function(){
+        addNumber(button.innerText);
     })
 });
 
-botonOpera.forEach(function(boton){
-    boton.addEventListener('click', function(){
-        selectOperacion(boton.innerText);
+buttonOperation.forEach(function(button){
+    button.addEventListener('click', function(){
+        selectOperation(button.innerText);
     })
 });
 
-botonIgual.addEventListener('click', function(){
-    calcular();
-    actualizarDisplay();
+buttonSame.addEventListener('click', function(){
+    calculate();
+    resfreshDisplay();
 });
 
-botonDelete.addEventListener('click', function(){
+buttonDelete.addEventListener('click', function(){
     clear();
-    actualizarDisplay();
+    resfreshDisplay();
 });
 
-function agregarNumero(num){
-    opeActual = opeActual.toString() + num.toString();
-    actualizarDisplay();
+function addNumber(num){
+    actualOperation = actualOperation.toString() + num.toString();
+    resfreshDisplay();
 }
 
-function actualizarDisplay(){
-    resultado.value = opeActual;
+function resfreshDisplay(){
+    result.value = actualOperation;
 }
 
 function clear(){
-    opeActual = '';
-    opeAnterior = '';
-    operacion = undefined;
+    actualOperation = '';
+    previousOperation = '';
+    operation = undefined;
 }
 
-function actualizarDisplay(){
-    resultado.value = opeActual;
+function resfreshDisplay(){
+    result.value = actualOperation;
 }
 
 clear();
 
-function selectOperacion(op){
-    if(opeActual === '') return;
-    if(opeAnterior !== ''){
-        calcular()
+function selectOperation(op){
+    if(actualOperation === '') return;
+    if(previousOperation !== ''){
+        calculate()
     }
-    operacion = op.toString();
-    opeAnterior = opeActual;
-    opeActual = '';
+    operation = op.toString();
+    previousOperation = actualOperation;
+    actualOperation = '';
 }
 
-function calcular(){
-    var calculo;
-    const anterior = parseFloat(opeAnterior);
-    const actual = parseFloat(opeActual);
-    if (isNaN(anterior) || isNaN(actual)) return;
-    switch(operacion){
+function calculate(){
+    var calculate;
+    const previous = parseFloat(previousOperation);
+    const actual = parseFloat(actualOperation);
+    if (isNaN(previous) || isNaN(actual)) return;
+    switch(operation){
         case '+':
-            calculo = anterior + actual;
+            calculate = previous + actual;
             break;
         case '-':
-            calculo = anterior - actual;
+            calculate = previous - actual;
             break;
         case '/':
-            calculo = anterior / actual;
+            calculate = previous / actual;
             break;
         case 'x':
-            calculo = anterior * actual;
+            calculate = previous * actual;
             break;
         default:
             return;
     }
-    opeActual = calculo;
-    operacion = undefined;
-    opeAnterior = '';
+    actualOperation = calculate;
+    operation = undefined;
+    previousOperation = '';
 }
